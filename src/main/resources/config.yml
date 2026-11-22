@@ -1,0 +1,48 @@
+# DonutRTPPlaytime - playtime requirements for DonutRTP.
+# Reload with /rtpplaytime reload.
+
+# Hours of playtime needed to RTP into a world.
+# The key is a world ENVIRONMENT (NORMAL, NETHER, THE_END) or an exact world name (a world name wins).
+# 0 or missing = no requirement.
+requirements:
+  NETHER: 5
+  THE_END: 24
+  # world_nether: 5        # example: a specific world name
+
+playtime:
+  # Where playtime comes from:
+  #   AUTO               = UltimateDonutSmp's playtime if it is installed (the same number as /playtime), else vanilla
+  #   ULTIMATEDONUTSMP   = only UltimateDonutSmp (players count as 0 if it can't be read)
+  #   VANILLA            = the vanilla "time played" statistic
+  source: AUTO
+
+# Teleports started by these sources are never blocked. Sources: COMMAND, MENU, ZONE, ADMIN.
+# ADMIN is "/rtp player <name>", so staff can still send people anywhere.
+exempt-sources: [ADMIN]
+
+# Players with this permission skip every requirement.
+bypass-permission: donutrtp.playtime.bypass
+
+# Refuse "/rtp <destination>" and menu clicks right away, before the warmup starts.
+# (Even with this off, DonutRTP's own pre-teleport event is always checked as the final gate.)
+early-check: true
+
+messages:
+  prefix: ""
+  # {required} hours needed, {current} hours played, {remaining} time still to go, {world} friendly world name
+  denied: "&cYou need at least {required} hours of playtime to RTP to {world}. &7(Current: {current}h, {remaining} to go)"
+  # Wording used for {world}
+  world-names:
+    NETHER: "the Nether"
+    THE_END: "the End"
+
+# Sound played when someone is refused: a sound key such as entity.villager.no ("none" = silent)
+deny-sound: "entity.villager.no"
+
+# Extra lines added to a locked destination's item in the /rtp menu
+menu-lore:
+  enabled: true
+  locked:
+    - ""
+    - "&cLocked: needs {required} hours of playtime"
+    - "&7You have &f{current}h &7({remaining} to go)"

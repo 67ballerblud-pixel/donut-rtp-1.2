@@ -1,0 +1,23 @@
+name: DonutRTPPlaytime
+version: 1.0
+main: me.fix.rtpplaytime.RtpPlaytime
+api-version: "1.20"
+folia-supported: true
+depend: [DonutRTP]
+softdepend: [UltimateDonutSmp]
+author: DILLYY_MC
+description: Playtime requirements for DonutRTP destinations (Nether and End).
+
+commands:
+  rtpplaytime:
+    description: Reload the config or check someone's RTP playtime
+    usage: /rtpplaytime [reload|check [player]]
+    aliases: [rtppt]
+
+permissions:
+  donutrtp.playtime.bypass:
+    description: Skip the playtime requirements
+    default: op
+  rtpplaytime.admin:
+    description: Use /rtpplaytime reload and check
+    default: op
